@@ -17,7 +17,6 @@ CREATE TABLE wcms_connection_v2 (
   documents character varying[],
   property character varying(64),
   address character varying(64), --> reference for address object in wcms connection
-  address JSONB,
   meter JSONB,
   owner character varying[],
   additionalDetails JSONB,
@@ -27,12 +26,12 @@ CREATE TABLE wcms_connection_v2 (
   lastModifiedTime bigint,
 
   CONSTRAINT pk_wcms_connection_v2 PRIMARY KEY (connectionNumber,tenantid),
-  CONSTRAINT uk_wcms_connection_v2 UNIQUE (uuid,tenantid),
+  CONSTRAINT uk_wcms_connection_v2 UNIQUE (uuid,tenantid)
 );
 
 CREATE TABLE wcms_connection_address_v2 (
 
-  tenatId character varying(256) NOT NULL,
+  tenantid character varying(256) NOT NULL,
   uuid character varying(64) NOT NULL,
   buildingName character varying(1024),
   roadName character varying(2056),
@@ -41,12 +40,10 @@ CREATE TABLE wcms_connection_address_v2 (
   revenueBoundary character varying(64),
   locationBoundary character varying(64),
   adminBoundary character varying(64),
+  createdBy	character varying(64),
+  lastModifiedBy	character varying(64),
+  createdTime	bigint,
+  lastModifiedTime bigint,
 
   CONSTRAINT pk_wcms_connection_address_v2 PRIMARY KEY(uuid,tenantid)
 );
-
-
-
-
-
----------------------------
